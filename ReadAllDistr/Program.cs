@@ -80,6 +80,7 @@ namespace ReadAllDistr
                 if(q.list !=null)
                     CoutLinkedList(q.list);
             }
+
         }
     }
 }
