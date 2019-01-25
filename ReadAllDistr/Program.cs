@@ -24,7 +24,6 @@ namespace ReadAllDistr
             LinkedList<Data1> dir = new LinkedList<Data1>();
             GetAllDir(dirName, dir);
 
-            Task.WaitAll();
             Thread.Sleep(2000);
             CoutLinkedList(dir,dirName);
             Console.ReadLine();
@@ -49,7 +48,7 @@ namespace ReadAllDistr
 
             string[] dirs = Directory.GetDirectories(dirName);
             string[] files = Directory.GetFiles(dirName);
-            Task task = null;
+
 
             lock (_locker)
             {
@@ -60,7 +59,7 @@ namespace ReadAllDistr
                     q.name = $"{s}\\";
                     q.list = new LinkedList<Data1>();
                     dir.Add(q);
-                    task = Task.Factory.StartNew(() => GetAllDir(s, q.list));
+                    Task task = Task.Factory.StartNew(() => GetAllDir(s, q.list));
                 }
 
                 foreach (string s in files)
